@@ -1,4 +1,6 @@
 composer.lock
+node_modules/
+web/assets/
 
 /.web-server-pid
 /app/config/parameters.yml
