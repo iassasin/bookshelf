@@ -23,16 +23,4 @@ class HomeController extends Controller
             'books' => $bookRep->findAll(),
         ]);
     }
-
-    /**
-     * @Route("/lucky/number", name="lucky_home")
-     */
-    public function numberAction()
-    {
-        $number = mt_rand(0, 100);
-
-        return new Response(
-            '<html><body>Lucky number: '.$number.'</body></html>'
-        );
-    }
 }
