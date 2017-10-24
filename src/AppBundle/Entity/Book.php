@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Book
@@ -25,6 +26,7 @@ class Book
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $name;
 
@@ -32,6 +34,7 @@ class Book
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $author;
 
@@ -39,6 +42,7 @@ class Book
      * @var string
      *
      * @ORM\Column(name="cover_file", type="string", length=255)
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
     private $coverFile;
 
@@ -46,13 +50,15 @@ class Book
      * @var string
      *
      * @ORM\Column(name="book_file", type="string", length=255)
+     * @Assert\File(maxSize="5Mi")
      */
     private $bookFile;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="read_date", type="datetime")
+     * @ORM\Column(name="read_date", type="date")
+     * @Assert\NotBlank
      */
     private $readDate;
 
