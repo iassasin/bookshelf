@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\Book;
 use AppBundle\Entity\User;
+use AppBundle\Form\BookType;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,7 @@ class HomeController extends Controller
     {
         $bookRep = $this->getDoctrine()->getRepository(Book::class);
 
-        return $this->render('default/index.html.twig', [
+        return $this->render('home/index.html.twig', [
             'books' => $bookRep->findAll(),
         ]);
     }
