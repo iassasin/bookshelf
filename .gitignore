@@ -1,6 +1,8 @@
 composer.lock
 node_modules/
 web/assets/
+web/uploads/*
+!web/uploads/.gitkeep
 
 /.web-server-pid
 /app/config/parameters.yml
