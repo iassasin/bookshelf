@@ -38,9 +38,11 @@ class FileStorage
 
     public function remove($fileName)
     {
-        $path = $this->getFilePathByFileName($fileName);
-        if ($this->filesystem->exists($path)) {
-            $this->filesystem->remove($path);
+        if ($fileName != '') {
+            $path = $this->getFilePathByFileName($fileName);
+            if ($this->filesystem->exists($path)) {
+                $this->filesystem->remove($path);
+            }
         }
     }
 

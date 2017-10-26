@@ -196,7 +196,7 @@ class Book
      *
      * @return Book
      */
-    public function setCoverFile(File $cover)
+    public function setCoverFile($cover)
     {
         $this->coverFile = $cover;
 

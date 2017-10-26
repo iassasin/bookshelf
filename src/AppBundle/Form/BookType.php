@@ -21,12 +21,18 @@ class BookType extends AbstractType
 
         $builder->add('coverFile', null, ['required' => false]);
         if (!$isNew) {
-            $builder->add('deleteCoverFile', CheckboxType::class, ['mapped' => false]);
+            $builder->add('deleteCoverFile', CheckboxType::class, [
+                'mapped' => false,
+                'required' => false,
+            ]);
         }
 
         $builder->add('bookFile', null, ['required' => false]);
         if (!$isNew) {
-            $builder->add('deleteBookFile', CheckboxType::class, ['mapped' => false]);
+            $builder->add('deleteBookFile', CheckboxType::class, [
+                'mapped' => false,
+                'required' => false,
+            ]);
         }
 
         $builder->add('isDownloadable', null, ['label' => 'Is book download available']);

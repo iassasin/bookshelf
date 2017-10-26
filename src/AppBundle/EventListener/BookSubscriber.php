@@ -61,6 +61,8 @@ class BookSubscriber implements EventSubscriber
                 if ($this->filesystem->exists($path)) {
                     $entity->setCoverFile(new File($path));
                 }
+            } else {
+                $entity->setCoverFile(null);
             }
 
             if ($entity->getBookPath() != '') {
@@ -68,6 +70,8 @@ class BookSubscriber implements EventSubscriber
                 if ($this->filesystem->exists($path)) {
                     $entity->setBookFile(new File($path));
                 }
+            } else {
+                $entity->setBookFile(null);
             }
         }
     }
