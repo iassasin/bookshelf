@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -41,15 +42,27 @@ class Book
     /**
      * @var string
      *
-     * @ORM\Column(name="cover_file", type="string", length=255)
+     * @ORM\Column(name="cover_path", type="string", length=255)
+     */
+    private $coverPath;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="book_path", type="string", length=255)
+     */
+    private $bookPath;
+
+    /**
+     * @var File
+     *
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
     private $coverFile;
 
     /**
-     * @var string
+     * @var File
      *
-     * @ORM\Column(name="book_file", type="string", length=255)
      * @Assert\File(maxSize="5Mi")
      */
     private $bookFile;
@@ -135,9 +148,9 @@ class Book
      *
      * @return Book
      */
-    public function setCoverFile($cover)
+    public function setCoverPath($cover)
     {
-        $this->coverFile = $cover;
+        $this->coverPath = $cover;
 
         return $this;
     }
@@ -147,29 +160,77 @@ class Book
      *
      * @return string
      */
+    public function getCoverPath()
+    {
+        return $this->coverPath;
+    }
+
+    /**
+     * Set bookPath
+     *
+     * @param string $bookPath
+     *
+     * @return Book
+     */
+    public function setBookPath($bookPath)
+    {
+        $this->bookPath = $bookPath;
+
+        return $this;
+    }
+
+    /**
+     * Get bookPath
+     *
+     * @return string
+     */
+    public function getBookPath()
+    {
+        return $this->bookPath;
+    }
+
+    /**
+     * Set cover file
+     *
+     * @param File $cover
+     *
+     * @return Book
+     */
+    public function setCoverFile(File $cover)
+    {
+        $this->coverFile = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover file
+     *
+     * @return File
+     */
     public function getCoverFile()
     {
         return $this->coverFile;
     }
 
     /**
-     * Set bookFile
+     * Set book file
      *
-     * @param string $bookFile
+     * @param File $book
      *
      * @return Book
      */
-    public function setBookFile($bookFile)
+    public function setBookFile($book)
     {
-        $this->bookFile = $bookFile;
+        $this->bookFile = $book;
 
         return $this;
     }
 
     /**
-     * Get bookFile
+     * Get bookPath
      *
-     * @return string
+     * @return File
      */
     public function getBookFile()
     {

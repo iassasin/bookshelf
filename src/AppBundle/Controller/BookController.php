@@ -26,15 +26,11 @@ class BookController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($book->getCoverFile() != null) {
-                $book->setCoverFile($storage->upload($book->getCoverFile()));
-            } else {
-                $book->setCoverFile('');
+                $book->setCoverPath($storage->upload($book->getCoverFile()));
             }
 
             if ($book->getBookFile() != null) {
-                $book->setBookFile($storage->upload($book->getBookFile()));
-            } else {
-                $book->setBookFile('');
+                $book->setBookPath($storage->upload($book->getBookFile()));
             }
 
             $em = $this->getDoctrine()->getManager();
