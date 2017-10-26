@@ -18,7 +18,7 @@ class FileStorage
 
     public function upload(UploadedFile $file)
     {
-        $baseDir = $this->getTargetDir();
+        $baseDir = $this->getTargetDir().'/';
 
         $fileName = sha1(uniqid()).'.'.($file->guessExtension() ?? '.bin');
         $f1 = '/'.$fileName[0];
@@ -48,7 +48,9 @@ class FileStorage
 
     public function getFilePathByFileName($fileName)
     {
-        return $this->getTargetDir().'/'.$fileName[0].'/'.$fileName[1].'/'.$fileName;
+        return strlen($fileName) < 2
+            ? $fileName
+            : $this->getTargetDir().'/'.$fileName[0].'/'.$fileName[1].'/'.$fileName;
     }
 
     public function getTargetDir()
