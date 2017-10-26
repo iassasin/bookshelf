@@ -44,4 +44,26 @@ class BookController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/book/delete/{bookId}", name="book_delete", requirements={"bookId": "\d+"})
+     */
+    public function bookDeleteAction($bookId, Request $request, FileStorage $storage)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $bookRep = $this->getDoctrine()->getRepository(Book::class);
+        $book = $bookRep->findOneById($bookId);
+
+        if ($book == null) {
+            return $this->render('error.html.twig', [
+                'title' => 'Edit book',
+                'message' => 'Book not found!',
+            ]);
+        }
+
+        $em->remove($book);
+        $em->flush();
+
+        return $this->redirectToRoute('homepage');
+    }
 }

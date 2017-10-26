@@ -8,7 +8,7 @@
             <div class="row block book">
                 {# sizedImage('favicon.ico') #}
                 <div class="col-xs-2">
-                    {{ b.coverFile }}
+                    {{ b.coverPath }}
                 </div>
                 <div class="col-xs-7">
                     <h2>{{ b.name }}</h2>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-xs-3">
                     {% if b.isDownloadable %}
-                        Download: {{ b.bookFile }}
+                        Download: {{ b.bookPath }}
                     {% endif %}
                 </div>
             </div>
