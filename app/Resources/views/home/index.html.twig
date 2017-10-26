@@ -4,6 +4,8 @@
     <div class="container">
         <h1>My bookshelf</h1>
 
+        <a href="{{ path('book_add') }}" class="btn btn-success">Add book</a>
+
         {% for b in books %}
             <div class="row block book">
                 {# sizedImage('favicon.ico') #}
@@ -11,10 +13,17 @@
                     {{ b.coverPath }}
                 </div>
                 <div class="col-xs-7">
-                    <h2>{{ b.name }}</h2>
+                    <h2>
+                        {{ b.name }}
+                        <a href="{{ path('book_edit', {'bookId': b.id}) }}" class="btn btn-default">Edit</a>
+                        <a href="{{ path('book_delete', {'bookId': b.id}) }}" class="btn btn-danger" onclick="return confirm('Delete book?');">Delete</a>
+                    </h2>
                     <div>by {{ b.author }}</div>
                     <div>
                         Read date: {{ b.readDate|date("Y-m-d")  }}
+                    </div>
+                    <div>
+
                     </div>
                 </div>
                 <div class="col-xs-3">

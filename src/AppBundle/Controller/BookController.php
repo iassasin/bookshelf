@@ -90,6 +90,7 @@ class BookController extends Controller
         }
 
         return $this->render('book/edit.html.twig', [
+            'bookid' => $bookId,
             'form' => $form->createView(),
         ]);
     }

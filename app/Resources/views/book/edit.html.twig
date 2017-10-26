@@ -4,6 +4,9 @@
     <div class="container">
         <h1>Edit book</h1>
 
+        <a href="{{ path('homepage') }}" class="btn btn-default">Back to list</a>
+        <a href="{{ path('book_delete', {'bookId': bookid}) }}" class="btn btn-danger" onclick="return confirm('Delete book?');">Delete book from list</a>
+
         <div class="row block book">
             {{ form_start(form) }}
             {{ form_widget(form) }}
