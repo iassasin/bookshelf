@@ -36,3 +36,7 @@ services:
     AppBundle\EventListener\BookSubscriber:
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+
+    AppBundle\EventListener\SerializeBookSubscriber:
+        tags:
+            - { name: jms_serializer.event_subscriber }

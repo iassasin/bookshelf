@@ -5,9 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Book
+ *
+ * @JMS\ExclusionPolicy("all")
  *
  * @ORM\Table(name="book")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BookRepository")
@@ -16,6 +19,9 @@ class Book
 {
     /**
      * @var int
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list"})
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -26,6 +32,9 @@ class Book
     /**
      * @var string
      *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "edit"})
+     *
      * @ORM\Column(name="name", type="string", length=255)
      * @Assert\NotBlank
      */
@@ -33,6 +42,9 @@ class Book
 
     /**
      * @var string
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "edit"})
      *
      * @ORM\Column(name="author", type="string", length=255)
      * @Assert\NotBlank
@@ -42,12 +54,18 @@ class Book
     /**
      * @var string
      *
+     * @JMS\Expose
+     * @JMS\Groups({"list"})
+     *
      * @ORM\Column(name="cover_path", type="string", length=255)
      */
     private $coverPath;
 
     /**
      * @var string
+     *
+     * @JMS\Expose(if="object.getIsDownloadable()")
+     * @JMS\Groups({"list"})
      *
      * @ORM\Column(name="book_path", type="string", length=255)
      */
@@ -70,6 +88,9 @@ class Book
     /**
      * @var \Date
      *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "edit"})
+     *
      * @ORM\Column(name="read_date", type="date")
      * @Assert\NotBlank
      */
@@ -77,6 +98,9 @@ class Book
 
     /**
      * @var bool
+     *
+     * @JMS\Expose
+     * @JMS\Groups({"list", "edit"})
      *
      * @ORM\Column(name="isDownloadable", type="boolean")
      */

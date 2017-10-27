@@ -10,15 +10,12 @@ class AppExtension extends \Twig_Extension
 {
     /** @var Packages */
     private $assets;
-    /** @var ContainerInterface */
-    private $container;
     /** @var FileStorage */
     private $storage;
 
-    public function __construct(Packages $assets, ContainerInterface $container, FileStorage $storage)
+    public function __construct(Packages $assets, FileStorage $storage)
     {
         $this->assets = $assets;
-        $this->container = $container;
         $this->storage = $storage;
     }
 
@@ -42,8 +39,6 @@ class AppExtension extends \Twig_Extension
 
     public function storageFilePathFunction($fileName)
     {
-        $kernelDir = $this->container->getParameter('web_directory');
-        $path = $this->storage->getFilePathByFileName($fileName);
-        return str_replace($kernelDir, '', $path);
+        return $this->storage->getAssetFilePath($fileName);
     }
 }
