@@ -15,12 +15,15 @@
 
         {% for b in books %}
             <div class="row block book">
-                <div class="col-xs-2">
+                <div class="col-xs-3 book-icon">
                     {{ sized_image(b.coverPath != '' ? storage_file_path(b.coverPath) : asset('apple-touch-icon.png'), null, 100)|raw }}
                 </div>
-                <div class="col-xs-7">
+                <div class="col-xs-9">
                     <h2>
                         {{ b.name }}
+                        {% if b.isDownloadable and b.bookPath != '' %}
+                            <a href="{{ asset(storage_file_path(b.bookPath)) }}" class="btn btn-default" target="_blank">Download</a>
+                        {% endif %}
                         {% if is_granted('ROLE_ADMIN') %}
                             <a href="{{ path('book_edit', {'bookId': b.id}) }}" class="btn btn-default">Edit</a>
                             <a href="{{ path('book_delete', {'bookId': b.id}) }}" class="btn btn-danger" onclick="return confirm('Delete book?');">Delete</a>
@@ -30,14 +33,6 @@
                     <div>
                         Read date: {{ b.readDate|date("Y-m-d")  }}
                     </div>
-                    <div>
-
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    {% if b.isDownloadable and b.bookPath != '' %}
-                        <a href="{{ asset(storage_file_path(b.bookPath)) }}" class="btn btn-default" target="_blank">Download</a>
-                    {% endif %}
                 </div>
             </div>
         {% endfor %}
