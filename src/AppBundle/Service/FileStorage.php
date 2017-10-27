@@ -10,10 +10,10 @@ class FileStorage
     private $targetDir;
     private $filesystem;
 
-    public function __construct($targetDir)
+    public function __construct($targetDir, Filesystem $filesystem)
     {
         $this->targetDir = $targetDir;
-        $this->filesystem = new Filesystem();
+        $this->filesystem = $filesystem;
     }
 
     public function upload(UploadedFile $file)

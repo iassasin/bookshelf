@@ -15,10 +15,10 @@ class BookSubscriber implements EventSubscriber
     private $storage;
     private $filesystem;
 
-    public function __construct(FileStorage $storage)
+    public function __construct(FileStorage $storage, Filesystem $filesystem)
     {
         $this->storage = $storage;
-        $this->filesystem = new Filesystem();
+        $this->filesystem = $filesystem;
     }
 
     public function getSubscribedEvents()
