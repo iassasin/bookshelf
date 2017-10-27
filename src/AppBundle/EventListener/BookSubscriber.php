@@ -3,6 +3,7 @@
 namespace AppBundle\EventListener;
 
 use Doctrine\ORM\Events;
+use Doctrine\ORM\Event\PostFlushEventArgs;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\HttpFoundation\File\File;
@@ -28,6 +29,7 @@ class BookSubscriber implements EventSubscriber
             Events::postPersist,
             Events::postRemove,
             Events::postUpdate,
+            Events::postFlush,
         ];
     }
 
@@ -49,6 +51,13 @@ class BookSubscriber implements EventSubscriber
     public function postUpdate(LifecycleEventArgs $args)
     {
         $this->loadFiles($args);
+    }
+
+    public function postFlush(PostFlushEventArgs $args)
+    {
+        $em = $args->getEntityManager();
+        $cacheDriver = $em->getConfiguration()->getResultCacheImpl();
+        $cacheDriver->delete('all_books');
     }
 
     public function loadFiles(LifecycleEventArgs $args)

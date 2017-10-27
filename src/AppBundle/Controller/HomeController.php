@@ -21,7 +21,7 @@ class HomeController extends Controller
         $bookRep = $this->getDoctrine()->getRepository(Book::class);
 
         return $this->render('home/index.html.twig', [
-            'books' => $bookRep->findBy([], ['readDate' => 'DESC']),
+            'books' => $bookRep->findAllCache(),
         ]);
     }
 }

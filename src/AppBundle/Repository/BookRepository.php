@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class BookRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllCache()
+    {
+        $qb = $this->createQueryBuilder('t');
+        return $qb
+            ->orderBy('t.readDate', 'DESC')
+            ->getQuery()
+            ->useResultCache(true, 24*60*60, 'all_books')
+            ->getResult();
+    }
 }
