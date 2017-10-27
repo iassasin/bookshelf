@@ -3,8 +3,12 @@ Before using this site you need to install:
 - postgresql, create user and database to store site data.
 - php apcu for database query cache (`apt-get install php-acpu`)
 
-After that execute in terminal (at linux) from project directory next commands:
+After that execute in terminal (at linux) next commands:
 ```bash
+# clone repo and go to project directory
+git clone https://github.com/iassasin/bookshelf.git bookshelf
+cd bookshelf
+
 # install dependencies
 composer install
 npm install
