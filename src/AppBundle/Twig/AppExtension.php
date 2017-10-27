@@ -25,7 +25,7 @@ class AppExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_Function('sized_image', [$this, 'sizedImageFunction']),
+            new \Twig_Function('sized_image', [$this, 'sizedImageFunction'], ['is_safe' => ['html']]),
             new \Twig_Function('storage_file_path', [$this, 'storageFilePathFunction']),
         ];
     }

@@ -16,7 +16,7 @@
         {% for b in books %}
             <div class="row block book">
                 <div class="col-xs-3 book-icon">
-                    {{ sized_image(b.coverPath != '' ? storage_file_path(b.coverPath) : asset('apple-touch-icon.png'), null, 100)|raw }}
+                    {{ sized_image(b.coverPath != '' ? storage_file_path(b.coverPath) : asset('apple-touch-icon.png'), null, 100) }}
                 </div>
                 <div class="col-xs-9">
                     <h2>
