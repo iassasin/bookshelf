@@ -16,6 +16,8 @@ npm install
 # generate js and css
 npm run dev
 
+# sync database schema
+php bin/console doctrine:schema:update --force
 # create admin user
 php bin/console fos:user:create admin
 # promote to created user ROLE_ADMIN
