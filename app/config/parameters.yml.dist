@@ -20,3 +20,4 @@ parameters:
 
     web_directory: "%kernel.project_dir%/web"
     files_directory: "%web_directory%/uploads"
+    api_key: ThisTokenIsNotSoSecretChangeIt

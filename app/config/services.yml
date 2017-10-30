@@ -33,6 +33,10 @@ services:
         arguments:
             $targetDir: '%files_directory%'
 
+    AppBundle\Security\ApiVoter:
+        arguments:
+            $apiKey: '%api_key%'
+
     AppBundle\EventListener\BookSubscriber:
         tags:
             - { name: doctrine.event_subscriber, connection: default }
